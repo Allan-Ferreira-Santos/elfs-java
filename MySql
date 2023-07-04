@@ -1,0 +1,39 @@
+CREATE DATABASE loja;
+
+USE loja;
+
+CREATE TABLE marcas (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(255)
+);
+
+CREATE TABLE usuarios (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  usuario VARCHAR(255),
+  senha VARCHAR(255),
+  statuslogado BOOLEAN
+);
+
+CREATE TABLE tenis (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  nome VARCHAR(255),
+  tamanho INT,
+  preco INT,
+  marca_id BIGINT,
+  FOREIGN KEY (marca_id) REFERENCES marcas(id)
+);
+
+CREATE TABLE pagamentos (
+  id BIGINT PRIMARY KEY AUTO_INCREMENT,
+  valor DOUBLE,
+  data DATE,
+  usuario_id BIGINT,
+  FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
+CREATE TABLE tenis_esportivo (
+  id BIGINT PRIMARY KEY,
+  modalidade VARCHAR(255),
+  FOREIGN KEY (id) REFERENCES tenis(id)
+);
+

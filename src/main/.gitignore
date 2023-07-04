@@ -1,0 +1,33 @@
+CREATE DATABASE loja;
+
+USE loja;
+CREATE TABLE usuarios (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario VARCHAR(255) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    statuslogado BOOLEAN NOT NULL
+);
+
+CREATE TABLE tenis (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    nome VARCHAR(255) NOT NULL,
+    tamanho INT NOT NULL,
+    preco INT NOT NULL,
+    marca_id INT,
+    FOREIGN KEY (marca_id) REFERENCES marca(id)
+);
+
+CREATE TABLE marca (
+    id INT PRIMARY KEY,
+    nome_marca VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id) REFERENCES tenis(id)
+);
+
+CREATE TABLE pagamentos (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    valor DOUBLE NOT NULL,
+    data DATE NOT NULL,
+    usuario_id INT,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id)
+);
+
